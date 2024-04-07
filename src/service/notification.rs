@@ -1,6 +1,6 @@
 use std::thread;
 
-use bambangshop::{compose_error_respones, compose_error_response, Result};
+use bambangshop::{Result, compose_error_response};
 use rocket::http::Status;
 use crate::model::notification::Notification;
 use crate::model::product::Product;
