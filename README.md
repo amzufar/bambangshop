@@ -69,7 +69,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
     -   [x] Commit: `Implement publish function in Program service and Program controller.`
     -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -102,3 +102,15 @@ If we only use the Model without separating concerns into "Service" and "Reposit
 
 Postman is like a Swiss Army knife for testing APIs – it's super handy!😁 You can use it to send requests to your API and see how it responds, just like sending messages back and forth. One cool thing is that you can organize your requests into groups, kind of like sorting your emails into folders. And if you need to change something in your tests, you can do it easily using environment variables – it's like having magic placeholders! Plus, Postman can run tests automatically for you, which saves a ton of time and effort. It's like having a robot helper that does all the boring stuff for you!
 #### Reflection Publisher-3
+1. Observer Pattern has two variations: **Push model** (publisher pushes data to subscribers) and **Pull model** (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+I think we are using the Push model because based on `notify` function, the Publisher iterates over a list of Subscribers from the `SubscriberRepository`. And then for each of those subscribers, the Publisher sends a notification by invoking the `update` method on the Subscriber with the payload. This aligns with the Push model of the Observer Pattern.
+
+2. What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if used Pull)
+
+By using the Pull version of the Observer Pattern in this tutorial presents benefits such as minimized overhead and regulated data retrieval. Under this setup, Subscribers would initiate requests for updates from the Publisher only as necessary, optimizing the management of resources. 
+However, adopting this method may introduce certain drawbacks, including delays in update delivery, heightened implementation complexity due to the incorporation of polling logic, and potential challenges associated with elevated network activity if Subscribers poll frequently. Ultimately, it all depends on the precise needs of the application and deliberations concerning resource allocation and system efficiency.
+
+3. Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+If we skip using multi-threading in the notification process, the program might get slow. Without multi-threading, notifications will go one by one, which can make things take longer. Also, if notifications take a while to process, the main part of the program might just wait around, not doing much else. And if there are lots of notifications or people to notify, the program might start to struggle to keep up. So, while skipping multi-threading is possible, it could make the program slower and less able to handle a lot of notifications at once.
